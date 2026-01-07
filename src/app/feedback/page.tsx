@@ -7,10 +7,11 @@ import { AuthModal } from '@/components/AuthModal';
 import { FeedbackForm } from '@/components/FeedbackForm';
 import { FeedbackList } from '@/components/FeedbackList';
 import { UserMenu } from '@/components/UserMenu';
+import { VoteChart } from '@/components/VoteChart';
 
 export default function FeedbackPage() {
   const [showAuthModal, setShowAuthModal] = useState(false);
-  const [activeTab, setActiveTab] = useState<'vote' | 'submit'>('vote');
+  const [activeTab, setActiveTab] = useState<'vote' | 'chart' | 'submit'>('vote');
 
   const handleAuthRequired = () => {
     setShowAuthModal(true);
@@ -63,7 +64,7 @@ export default function FeedbackPage() {
         {/* Main Content */}
         <main className="relative max-w-6xl mx-auto px-4 sm:px-6 py-8">
           {/* Page Title */}
-          <div className="text-center mb-10">
+          <div className="text-center mb-8">
             <h1 className="text-3xl sm:text-4xl font-bold text-white mb-3 tracking-tight">
               Product Feedback
             </h1>
@@ -72,30 +73,50 @@ export default function FeedbackPage() {
             </p>
           </div>
 
+          {/* Chart Section - Desktop */}
+          <div className="hidden lg:block mb-8">
+            <VoteChart />
+          </div>
+
           {/* Mobile Tab Switcher */}
           <div className="lg:hidden mb-6">
             <div className="flex bg-white/5 rounded-2xl p-1.5 border border-white/10">
               <button
                 onClick={() => setActiveTab('vote')}
-                className={`flex-1 py-3 px-4 rounded-xl text-sm font-medium transition-all ${
+                className={`flex-1 py-3 px-3 rounded-xl text-sm font-medium transition-all ${
                   activeTab === 'vote'
                     ? 'bg-gradient-to-r from-[#6366f1] to-[#8b5cf6] text-white shadow-lg'
                     : 'text-gray-400 hover:text-white'
                 }`}
               >
-                Vote on Ideas
+                Vote
+              </button>
+              <button
+                onClick={() => setActiveTab('chart')}
+                className={`flex-1 py-3 px-3 rounded-xl text-sm font-medium transition-all ${
+                  activeTab === 'chart'
+                    ? 'bg-gradient-to-r from-[#6366f1] to-[#8b5cf6] text-white shadow-lg'
+                    : 'text-gray-400 hover:text-white'
+                }`}
+              >
+                Chart
               </button>
               <button
                 onClick={() => setActiveTab('submit')}
-                className={`flex-1 py-3 px-4 rounded-xl text-sm font-medium transition-all ${
+                className={`flex-1 py-3 px-3 rounded-xl text-sm font-medium transition-all ${
                   activeTab === 'submit'
                     ? 'bg-gradient-to-r from-[#6366f1] to-[#8b5cf6] text-white shadow-lg'
                     : 'text-gray-400 hover:text-white'
                 }`}
               >
-                Submit New
+                Submit
               </button>
             </div>
+          </div>
+
+          {/* Mobile Chart */}
+          <div className={`lg:hidden mb-6 ${activeTab === 'chart' ? 'block' : 'hidden'}`}>
+            <VoteChart />
           </div>
 
           {/* Content Grid */}
@@ -176,4 +197,3 @@ export default function FeedbackPage() {
     </AuthProvider>
   );
 }
-
