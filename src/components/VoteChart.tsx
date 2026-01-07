@@ -67,7 +67,8 @@ export function VoteChart() {
   const [loading, setLoading] = useState(true);
   const [isUpdating, setIsUpdating] = useState(false);
   const { supabase, isConfigured } = useAuth();
-  const channelRef = useRef<ReturnType<typeof supabase.channel> | null>(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const channelRef = useRef<any>(null);
 
   const fetchTopFeedback = useCallback(async (showUpdateIndicator = false) => {
     if (!supabase) {
