@@ -80,7 +80,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const { error } = await supabase.auth.signInWithOtp({
       email,
       options: {
-        emailRedirectTo: process.env.NEXT_PUBLIC_APP_URL,
+        emailRedirectTo: `${window.location.origin}/feedback`,
       },
     });
     return { error };
