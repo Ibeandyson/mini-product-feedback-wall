@@ -42,7 +42,7 @@ Rename `env.local.example` to `.env.local` and add your credentials:
 
 ```env
 NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
+NEXT_PUBLIC_SUPABASE_ANON=your-anon-key
 ```
 
 Find these in your Supabase Dashboard → Settings → API.
