@@ -72,26 +72,29 @@ export function VoteButton({
       <button
         onClick={handleVote}
         disabled={isVoting}
-        className={`group flex items-center justify-center w-10 h-10 rounded-xl transition-all transform hover:scale-110 active:scale-95 ${
+        className={`group/btn relative w-12 h-10 rounded-xl transition-all duration-200 transform hover:scale-110 active:scale-95 ${
           isActive
             ? 'bg-gradient-to-br from-[#10b981] to-[#059669] text-white shadow-lg shadow-[#10b981]/30'
-            : 'bg-[#1a1a2e] border border-[#3d3d5c] text-gray-400 hover:text-[#10b981] hover:border-[#10b981]'
+            : 'bg-white/5 border border-white/10 text-gray-400 hover:text-[#10b981] hover:border-[#10b981]/50 hover:bg-[#10b981]/10'
         } ${isVoting ? 'opacity-50 cursor-wait' : ''}`}
         title="Upvote"
       >
         <svg
-          className={`w-5 h-5 transition-transform ${isActive ? '' : 'group-hover:-translate-y-0.5'}`}
+          className={`w-5 h-5 mx-auto transition-transform duration-200 ${isActive ? '' : 'group-hover/btn:-translate-y-0.5'}`}
           fill={isActive ? 'currentColor' : 'none'}
           stroke="currentColor"
           viewBox="0 0 24 24"
+          strokeWidth={isActive ? 0 : 2.5}
         >
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
-            strokeWidth={2}
             d="M5 15l7-7 7 7"
           />
         </svg>
+        {isActive && (
+          <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-white/20 to-transparent animate-pulse" />
+        )}
       </button>
     );
   }
@@ -100,26 +103,29 @@ export function VoteButton({
     <button
       onClick={handleVote}
       disabled={isVoting}
-      className={`group flex items-center justify-center w-10 h-10 rounded-xl transition-all transform hover:scale-110 active:scale-95 ${
+      className={`group/btn relative w-12 h-10 rounded-xl transition-all duration-200 transform hover:scale-110 active:scale-95 ${
         isActive
           ? 'bg-gradient-to-br from-[#ef4444] to-[#dc2626] text-white shadow-lg shadow-[#ef4444]/30'
-          : 'bg-[#1a1a2e] border border-[#3d3d5c] text-gray-400 hover:text-[#ef4444] hover:border-[#ef4444]'
+          : 'bg-white/5 border border-white/10 text-gray-400 hover:text-[#ef4444] hover:border-[#ef4444]/50 hover:bg-[#ef4444]/10'
       } ${isVoting ? 'opacity-50 cursor-wait' : ''}`}
       title="Downvote"
     >
       <svg
-        className={`w-5 h-5 transition-transform ${isActive ? '' : 'group-hover:translate-y-0.5'}`}
+        className={`w-5 h-5 mx-auto transition-transform duration-200 ${isActive ? '' : 'group-hover/btn:translate-y-0.5'}`}
         fill={isActive ? 'currentColor' : 'none'}
         stroke="currentColor"
         viewBox="0 0 24 24"
+        strokeWidth={isActive ? 0 : 2.5}
       >
         <path
           strokeLinecap="round"
           strokeLinejoin="round"
-          strokeWidth={2}
           d="M19 9l-7 7-7-7"
         />
       </svg>
+      {isActive && (
+        <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-white/20 to-transparent animate-pulse" />
+      )}
     </button>
   );
 }
